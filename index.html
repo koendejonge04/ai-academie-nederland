@@ -581,9 +581,16 @@
             opacity: 1;
         }
 
-        .client-logo svg {
-            height: 36px;
+        .client-logo svg,
+        .client-logo img {
+            height: 40px;
             width: auto;
+            max-width: 180px;
+            object-fit: contain;
+        }
+
+        .client-logo.logo-shell img {
+            height: 56px;
         }
 
         .logo-text {
@@ -1680,100 +1687,63 @@
         <p class="clients-banner-label reveal">Bedrijven die we al hebben geholpen</p>
         <div class="clients-slider">
             <div class="clients-track">
-                <!-- ING -->
                 <div class="client-logo">
-                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ING">
-                        <text x="0" y="32" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#FF6200" letter-spacing="-1">ING</text>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/96/ING_Group_%28full_logo%29.svg/300px-ING_Group_%28full_logo%29.svg.png" alt="ING" loading="lazy">
+                </div>
+                <div class="client-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unive_logo.svg/300px-Unive_logo.svg.png" alt="Univé" loading="lazy">
+                </div>
+                <div class="client-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Rabobank_logo.svg/300px-Rabobank_logo.svg.png" alt="Rabobank" loading="lazy">
+                </div>
+                <div class="client-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Isala-logo-vector.svg/300px-Isala-logo-vector.svg.png" alt="Isala" loading="lazy">
+                </div>
+                <!-- St Antonius — no Wikimedia file available, rendered as inline SVG -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;" aria-label="St. Antonius Ziekenhuis">
+                        <text x="0" y="34" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#822680">st antonius</text>
+                        <text x="2" y="50" font-family="Arial,sans-serif" font-size="13" font-weight="500" fill="#F05A2A">een santeon ziekenhuis</text>
                     </svg>
                 </div>
-                <!-- Univé -->
-                <div class="client-logo">
-                    <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Univé">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#E2001A">Univé</text>
-                    </svg>
+                <div class="client-logo logo-shell">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/150px-Shell_logo.svg.png" alt="Shell" loading="lazy">
                 </div>
-                <!-- Rabobank -->
                 <div class="client-logo">
-                    <svg viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rabobank">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#DA291C">Rabobank</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_of_Bol_%282025%29.svg/300px-Logo_of_Bol_%282025%29.svg.png" alt="bol.com" loading="lazy">
                 </div>
-                <!-- Isala -->
                 <div class="client-logo">
-                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Isala Ziekenhuis">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#005CA9">Isala</text>
-                        <text x="76" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#005CA9">Ziekenhuis</text>
-                    </svg>
-                </div>
-                <!-- Antonius -->
-                <div class="client-logo">
-                    <svg viewBox="0 0 260 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Antonius Ziekenhuis">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#003882">Antonius</text>
-                        <text x="132" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#003882">Ziekenhuis</text>
-                    </svg>
-                </div>
-                <!-- Shell -->
-                <div class="client-logo">
-                    <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Shell">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#DD1D21">Shell</text>
-                    </svg>
-                </div>
-                <!-- bol.com -->
-                <div class="client-logo">
-                    <svg viewBox="0 0 115 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="bol.com">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#0000A4">bol.com</text>
-                    </svg>
-                </div>
-                <!-- MediaMarkt -->
-                <div class="client-logo">
-                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MediaMarkt">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#CC0000">MediaMarkt</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Media_Markt_logo.svg/300px-Media_Markt_logo.svg.png" alt="MediaMarkt" loading="lazy">
                 </div>
             </div>
             <!-- Duplicate for seamless loop -->
             <div class="clients-track" aria-hidden="true">
                 <div class="client-logo">
-                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="32" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#FF6200" letter-spacing="-1">ING</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/96/ING_Group_%28full_logo%29.svg/300px-ING_Group_%28full_logo%29.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#E2001A">Univé</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unive_logo.svg/300px-Unive_logo.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#DA291C">Rabobank</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Rabobank_logo.svg/300px-Rabobank_logo.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#005CA9">Isala</text>
-                        <text x="76" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#005CA9">Ziekenhuis</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Isala-logo-vector.svg/300px-Isala-logo-vector.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 260 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#003882">Antonius</text>
-                        <text x="132" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#003882">Ziekenhuis</text>
+                    <svg viewBox="0 0 280 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:40px;width:auto;" aria-hidden="true">
+                        <text x="0" y="34" font-family="Arial,sans-serif" font-size="34" font-weight="800" fill="#822680">st antonius</text>
+                        <text x="2" y="50" font-family="Arial,sans-serif" font-size="13" font-weight="500" fill="#F05A2A">een santeon ziekenhuis</text>
                     </svg>
                 </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#DD1D21">Shell</text>
-                    </svg>
+                <div class="client-logo logo-shell">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/150px-Shell_logo.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 115 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#0000A4">bol.com</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Logo_of_Bol_%282025%29.svg/300px-Logo_of_Bol_%282025%29.svg.png" alt="" loading="lazy">
                 </div>
                 <div class="client-logo">
-                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#CC0000">MediaMarkt</text>
-                    </svg>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Media_Markt_logo.svg/300px-Media_Markt_logo.svg.png" alt="" loading="lazy">
                 </div>
             </div>
         </div>
