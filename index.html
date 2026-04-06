@@ -532,6 +532,60 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* Client logo banner */
+        .clients-banner {
+            padding: 80px 0;
+            background: #FFFFFF;
+            border-top: 1px solid #E5E5E5;
+            border-bottom: 1px solid #E5E5E5;
+            overflow: hidden;
+        }
+
+        .clients-banner-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .clients-slider {
+            display: flex;
+            animation: scrollClients 28s linear infinite;
+        }
+
+        .clients-track {
+            display: flex;
+            gap: 72px;
+            align-items: center;
+            padding: 0 36px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scrollClients {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            opacity: 0.75;
+            transition: opacity 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        .client-logo svg {
+            height: 36px;
+            width: auto;
+        }
+
         .logo-text {
             font-size: 1.4rem;
             font-weight: 700;
@@ -1616,6 +1670,110 @@
                             <div class="stat-label">ROI eerste jaar</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client logo banner -->
+    <section class="clients-banner">
+        <p class="clients-banner-label reveal">Bedrijven die we al hebben geholpen</p>
+        <div class="clients-slider">
+            <div class="clients-track">
+                <!-- ING -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ING">
+                        <text x="0" y="32" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#FF6200" letter-spacing="-1">ING</text>
+                    </svg>
+                </div>
+                <!-- Univé -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Univé">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#E2001A">Univé</text>
+                    </svg>
+                </div>
+                <!-- Rabobank -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rabobank">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#DA291C">Rabobank</text>
+                    </svg>
+                </div>
+                <!-- Isala -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Isala Ziekenhuis">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#005CA9">Isala</text>
+                        <text x="76" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#005CA9">Ziekenhuis</text>
+                    </svg>
+                </div>
+                <!-- Antonius -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 260 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Antonius Ziekenhuis">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#003882">Antonius</text>
+                        <text x="132" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#003882">Ziekenhuis</text>
+                    </svg>
+                </div>
+                <!-- Shell -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Shell">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#DD1D21">Shell</text>
+                    </svg>
+                </div>
+                <!-- bol.com -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 115 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="bol.com">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#0000A4">bol.com</text>
+                    </svg>
+                </div>
+                <!-- MediaMarkt -->
+                <div class="client-logo">
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="MediaMarkt">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#CC0000">MediaMarkt</text>
+                    </svg>
+                </div>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="clients-track" aria-hidden="true">
+                <div class="client-logo">
+                    <svg viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="32" font-family="Arial,sans-serif" font-size="36" font-weight="900" fill="#FF6200" letter-spacing="-1">ING</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#E2001A">Univé</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 170 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#DA291C">Rabobank</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#005CA9">Isala</text>
+                        <text x="76" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#005CA9">Ziekenhuis</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 260 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#003882">Antonius</text>
+                        <text x="132" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="400" fill="#003882">Ziekenhuis</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 90 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="28" font-weight="900" fill="#DD1D21">Shell</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 115 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#0000A4">bol.com</text>
+                    </svg>
+                </div>
+                <div class="client-logo">
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="30" font-family="Arial,sans-serif" font-size="26" font-weight="800" fill="#CC0000">MediaMarkt</text>
+                    </svg>
                 </div>
             </div>
         </div>
