@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Academie Nederland | Praktische AI-opleidingen voor professionals</title>
+    <meta name="description" content="De toonaangevende AI-academie van Nederland. Praktische trainingen in AI, automatisering en data voor professionals en bedrijven.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #FFFFFF;
+            --black-light: #F9F9F9;
+            --black-medium: #F5F5F5;
+            --black-soft: #EFEFEF;
+            --green-primary: #0D0D0D;
+            --green-bright: #333333;
+            --green-dark: #000000;
+            --green-glow: rgba(0, 0, 0, 0.06);
+            --green-subtle: rgba(0, 0, 0, 0.04);
+            --white: #0D0D0D;
+            --gray-100: #111827;
+            --gray-200: #1F2937;
+            --gray-300: #374151;
+            --gray-400: #6B7280;
+            --gray-500: #9CA3AF;
+            --gray-600: #D1D5DB;
+            --gray-700: #E5E5E5;
+            --gray-800: #F5F5F5;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 48px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                padding: 0 64px;
+            }
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo span {
+            color: #0D0D0D;
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 40px;
+            list-style: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: #0D0D0D;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .nav-cta:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile menu toggle */
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-toggle {
+                display: none;
+            }
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--green-primary) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+            opacity: 0.35;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--green-dark) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: -7s;
+            opacity: 0.3;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(47, 62, 90, 0.4) 0%, transparent 70%);
+            top: 40%;
+            left: 30%;
+            animation-delay: -14s;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.95); }
+            75% { transform: translate(-50px, -30px) scale(1.05); }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-element svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+        }
+
+        .float-1 {
+            width: 80px;
+            height: 80px;
+            top: 15%;
+            left: 8%;
+            animation: floatElement 15s ease-in-out infinite;
+        }
+
+        .float-2 {
+            width: 100px;
+            height: 100px;
+            top: 25%;
+            right: 10%;
+            animation: floatElement 18s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+
+        .float-3 {
+            width: 70px;
+            height: 70px;
+            bottom: 30%;
+            left: 12%;
+            animation: floatElement 20s ease-in-out infinite;
+            animation-delay: -6s;
+        }
+
+        .float-4 {
+            width: 90px;
+            height: 90px;
+            bottom: 20%;
+            right: 8%;
+            animation: floatElement 16s ease-in-out infinite;
+            animation-delay: -9s;
+        }
+
+        .float-5 {
+            width: 60px;
+            height: 60px;
+            top: 50%;
+            left: 5%;
+            animation: floatElement 22s ease-in-out infinite;
+            animation-delay: -12s;
+        }
+
+        .float-6 {
+            width: 75px;
+            height: 75px;
+            top: 60%;
+            right: 5%;
+            animation: floatElement 19s ease-in-out infinite;
+            animation-delay: -15s;
+        }
+
+        @media (max-width: 768px) {
+            .floating-element {
+                display: none;
+            }
+            .float-2, .float-4 {
+                display: flex;
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @keyframes floatElement {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(10px) rotate(-3deg); }
+            75% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid #D1D5DB;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            color: #6B7280;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        .hero-badge::before {
+            content: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: #0D0D0D;
+        }
+
+        .hero h1 .highlight {
+            color: #0D0D0D;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--gray-400);
+            max-width: 620px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 480px) {
+            .hero-cta-group {
+                flex-direction: row;
+            }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #0D0D0D;
+            color: #FFFFFF;
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .btn-primary:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            color: #0D0D0D;
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid #D1D5DB;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: #F5F5F5;
+            border-color: #9CA3AF;
+            transform: translateY(-2px);
+        }
+
+        /* Grid Pattern Overlay */
+        .hero::before {
+            display: none;
+        }
+
+        .gradient-orb,
+        .floating-elements,
+        .floating-element,
+        .cursor-glow {
+            display: none !important;
+        }
+
+        /* Social Proof / Partners Section */
+        .social-proof {
+            padding: 80px 0;
+            background: #F5F5F5;
+            border-top: 1px solid #E5E5E5;
+            border-bottom: 1px solid #E5E5E5;
+            overflow: hidden;
+        }
+
+        .social-proof-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .logo-slider {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .logo-track {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-600);
+            white-space: nowrap;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+
+        .logo-text:hover {
+            color: var(--gray-400);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 60px 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-item .stat-value {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #0D0D0D;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .stat-item .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            font-weight: 400;
+        }
+
+        /* Case Studies / Succesverhalen Section */
+        .case-studies {
+            padding: 140px 0;
+            background: var(--black-light);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .section-tag::before,
+        .section-tag::after {
+            content: none;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .cases-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .case-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #0D0D0D;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-3px);
+            border-color: #D1D5DB;
+        }
+
+        .case-card:hover::before {
+            opacity: 1;
+        }
+
+        .case-industry {
+            display: inline-block;
+            background: transparent;
+            color: #6B7280;
+            border: 1px solid #E5E5E5;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .case-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .case-description {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0D0D0D;
+            line-height: 1;
+            margin-bottom: 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--black);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            border-color: #D1D5DB;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-stars svg {
+            width: 16px;
+            height: 16px;
+            color: #0D0D0D;
+            fill: #0D0D0D;
+        }
+
+        .testimonial-quote {
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: #0D0D0D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .author-info .author-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .author-info .author-role {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 140px 0;
+            background: var(--black);
+            position: relative;
+        }
+
+        .how-it-works::before {
+            display: none;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            position: relative;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .process-step {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-step:nth-child(even) .step-content {
+                order: 2;
+            }
+
+            .process-step:nth-child(even) .step-visual {
+                order: 1;
+            }
+        }
+
+        .step-content {
+            padding: 20px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: #0D0D0D;
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            margin-bottom: 24px;
+        }
+
+        .step-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .step-description {
+            color: var(--gray-400);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .step-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .step-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray-300);
+            font-size: 0.95rem;
+        }
+
+        .step-features li::before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            background: var(--green-subtle);
+            border-radius: var(--radius-sm);
+            display: inline-block;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236A7287'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 11px;
+        }
+
+        .step-visual {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+        }
+
+        /* Mock visual content for step cards */
+        .step-visual-mock {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-visual-mock::after {
+            display: none;
+        }
+
+        .mock-ui {
+            width: 85%;
+            height: 80%;
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mock-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .mock-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gray-700);
+        }
+
+        .mock-dot.green {
+            background: var(--green-primary);
+        }
+
+        .mock-line {
+            height: 8px;
+            background: var(--gray-800);
+            border-radius: 4px;
+        }
+
+        .mock-line.short { width: 40%; }
+        .mock-line.medium { width: 65%; }
+        .mock-line.long { width: 90%; }
+        .mock-line.green { background: rgba(0,0,0,0.08); }
+
+        .mock-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .mock-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-sm);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .mock-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0D0D0D;
+        }
+
+        /* Courses/Programs Section */
+        .services {
+            padding: 140px 0;
+            background: linear-gradient(180deg, var(--black-light) 0%, var(--black) 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .service-card {
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+            border-top: 3px solid transparent;
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            display: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            border-color: #D1D5DB;
+            border-top-color: #0D0D0D;
+        }
+
+        .service-card:hover::before {
+            display: none;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: #F5F5F5;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            color: #0D0D0D;
+        }
+
+        .service-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6B7280;
+            background: transparent;
+            border: 1px solid #E5E5E5;
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-description {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .service-meta {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .service-meta-item svg {
+            width: 14px;
+            height: 14px;
+            color: #0D0D0D;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 140px 0;
+            background: #0D0D0D;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            display: none;
+        }
+
+        .cta-section .cta-title {
+            color: #FFFFFF;
+        }
+
+        .cta-section .cta-subtitle {
+            color: rgba(255,255,255,0.65);
+        }
+
+        .cta-section .cta-note {
+            color: rgba(255,255,255,0.45);
+        }
+
+        .cta-section .cta-note strong {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .cta-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-400);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: #FFFFFF;
+            color: #0D0D0D;
+            padding: 18px 40px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .cta-button:hover {
+            background: #F5F5F5;
+            transform: translateY(-2px);
+        }
+
+        .cta-button svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s var(--transition-smooth);
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(4px);
+        }
+
+        .cta-note {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .cta-note strong {
+            color: var(--gray-400);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 40px;
+            background: var(--black-light);
+            border-top: 1px solid #E5E5E5;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1.5fr repeat(3, 1fr);
+            }
+        }
+
+        .footer-brand .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .footer-brand .footer-logo span {
+            color: #0D0D0D;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+            max-width: 240px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col ul a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+            padding-top: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-copyright {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--gray-400);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #0D0D0D;
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        /* Custom Cursor Glow (Desktop Only) */
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(47, 62, 90, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .cursor-glow {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">AI Academie <span>Nederland</span></a>
+            <ul class="nav-links">
+                <li><a href="cursussen.html">Cursussen</a></li>
+                <li><a href="#trainingen">Trainingen</a></li>
+                <li><a href="#aanpak">Onze Aanpak</a></li>
+                <li><a href="#resultaten">Resultaten</a></li>
+                <li><a href="#over-ons">Over Ons</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Gratis Kennismaken</a>
+            <button class="nav-toggle" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+
+        <!-- Floating Tech Icons (SVG) -->
+        <div class="floating-elements" id="floatingElements">
+            <!-- Brain / AI -->
+            <div class="floating-element float-1" data-speed="0.05">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+                    <circle cx="24" cy="24" r="20" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <path d="M16 20c0-4.4 3.6-8 8-8s8 3.6 8 8c0 2.4-1.1 4.6-2.8 6.1L28 36H20l-.2-9.9C18.1 24.6 16 22.4 16 20z" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <path d="M20 30h8M21 34h6" stroke="#6A7287" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Chart/Data -->
+            <div class="floating-element float-2" data-speed="0.03">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:56px;height:56px;">
+                    <rect x="8" y="28" width="8" height="12" rx="2" fill="#6A7287" opacity="0.7"/>
+                    <rect x="20" y="20" width="8" height="20" rx="2" fill="#6A7287" opacity="0.85"/>
+                    <rect x="32" y="12" width="8" height="28" rx="2" fill="#6A7287"/>
+                    <path d="M8 10l10 10 8-6 12-8" stroke="#CFCFD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="8" cy="10" r="2.5" fill="#CFCFD2"/>
+                    <circle cx="18" cy="20" r="2.5" fill="#CFCFD2"/>
+                    <circle cx="26" cy="14" r="2.5" fill="#CFCFD2"/>
+                    <circle cx="38" cy="6" r="2.5" fill="#CFCFD2"/>
+                </svg>
+            </div>
+            <!-- Code / API -->
+            <div class="floating-element float-3" data-speed="0.04">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:40px;height:40px;">
+                    <path d="M18 14l-8 10 8 10" stroke="#6A7287" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M30 14l8 10-8 10" stroke="#6A7287" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M27 10L21 38" stroke="#CFCFD2" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Robot / Automation -->
+            <div class="floating-element float-4" data-speed="0.06">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:50px;">
+                    <rect x="10" y="18" width="28" height="22" rx="4" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <rect x="16" y="10" width="16" height="10" rx="3" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <line x1="24" y1="10" x2="24" y2="6" stroke="#6A7287" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="24" cy="5" r="2" fill="#6A7287"/>
+                    <circle cx="18" cy="27" r="3" fill="#6A7287" opacity="0.8"/>
+                    <circle cx="30" cy="27" r="3" fill="#6A7287" opacity="0.8"/>
+                    <path d="M18 34h12" stroke="#CFCFD2" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="26" x2="10" y2="26" stroke="#6A7287" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="38" y1="26" x2="42" y2="26" stroke="#6A7287" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Graduation Cap -->
+            <div class="floating-element float-5" data-speed="0.02">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:36px;height:36px;">
+                    <path d="M24 12L4 22l20 10 20-10-20-10z" stroke="#6A7287" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+                    <path d="M36 27v8c0 3-5.4 6-12 6s-12-3-12-6v-8" stroke="#6A7287" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="44" y1="22" x2="44" y2="34" stroke="#CFCFD2" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Network -->
+            <div class="floating-element float-6" data-speed="0.04">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+                    <circle cx="24" cy="24" r="5" fill="#6A7287" opacity="0.9"/>
+                    <circle cx="8" cy="12" r="4" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <circle cx="40" cy="12" r="4" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <circle cx="8" cy="36" r="4" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <circle cx="40" cy="36" r="4" stroke="#6A7287" stroke-width="1.5" fill="none"/>
+                    <line x1="12" y1="14" x2="20" y2="21" stroke="#CFCFD2" stroke-width="1" opacity="0.6"/>
+                    <line x1="36" y1="14" x2="28" y2="21" stroke="#CFCFD2" stroke-width="1" opacity="0.6"/>
+                    <line x1="12" y1="34" x2="20" y2="27" stroke="#CFCFD2" stroke-width="1" opacity="0.6"/>
+                    <line x1="36" y1="34" x2="28" y2="27" stroke="#CFCFD2" stroke-width="1" opacity="0.6"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge reveal">
+                #1 AI-opleider van Nederland
+            </div>
+            <h1 class="reveal reveal-delay-1">
+                Leer werken met AI en<br><span class="highlight">verander je carrière</span> voor altijd.
+            </h1>
+            <p class="hero-subtitle reveal reveal-delay-2">
+                Praktische AI-trainingen voor professionals en bedrijven. Van ChatGPT tot automatisering — wij geven je de kennis en tools om morgen direct mee aan de slag te gaan.
+            </p>
+            <div class="hero-cta-group reveal reveal-delay-3">
+                <a href="#trainingen" class="btn-primary">
+                    Bekijk trainingen
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <a href="#resultaten" class="btn-secondary">
+                    Bekijk resultaten
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Tools -->
+    <section class="social-proof">
+        <p class="social-proof-label reveal">Wij leren je werken met de toonaangevende AI-tools</p>
+        <div class="logo-slider">
+            <div class="logo-track">
+                <span class="logo-text">ChatGPT</span>
+                <span class="logo-text">Claude</span>
+                <span class="logo-text">Copilot</span>
+                <span class="logo-text">Make</span>
+                <span class="logo-text">n8n</span>
+                <span class="logo-text">Zapier</span>
+                <span class="logo-text">Midjourney</span>
+                <span class="logo-text">Gemini</span>
+                <span class="logo-text">Notion AI</span>
+                <span class="logo-text">HubSpot</span>
+                <span class="logo-text">Perplexity</span>
+                <span class="logo-text">LangChain</span>
+            </div>
+            <div class="logo-track" aria-hidden="true">
+                <span class="logo-text">ChatGPT</span>
+                <span class="logo-text">Claude</span>
+                <span class="logo-text">Copilot</span>
+                <span class="logo-text">Make</span>
+                <span class="logo-text">n8n</span>
+                <span class="logo-text">Zapier</span>
+                <span class="logo-text">Midjourney</span>
+                <span class="logo-text">Gemini</span>
+                <span class="logo-text">Notion AI</span>
+                <span class="logo-text">HubSpot</span>
+                <span class="logo-text">Perplexity</span>
+                <span class="logo-text">LangChain</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-value"><span class="counter" data-target="2400">0</span>+</div>
+                    <div class="stat-label">Professionals opgeleid</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-1">
+                    <div class="stat-value"><span class="counter" data-target="97">0</span>%</div>
+                    <div class="stat-label">Tevredenheid cursisten</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-2">
+                    <div class="stat-value"><span class="counter" data-target="48">0</span>+</div>
+                    <div class="stat-label">Verschillende trainingen</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-3">
+                    <div class="stat-value"><span class="counter" data-target="150">0</span>+</div>
+                    <div class="stat-label">Bedrijfspartners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Resultaten Section -->
+    <section class="case-studies" id="resultaten">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Bewezen Resultaten</span>
+                <h2 class="section-title">Wat onze cursisten bereiken</h2>
+                <p class="section-subtitle">Onze deelnemers gaan niet weg met theorie, maar met echte vaardigheden. Zie wat zij bereikten na onze trainingen.</p>
+            </div>
+
+            <div class="cases-grid">
+                <div class="case-card reveal reveal-delay-1">
+                    <span class="case-industry">Marketing</span>
+                    <h3 class="case-title">Van 2 naar 20 contentpieces per week</h3>
+                    <p class="case-description">Een marketingteam van 4 personen automatiseerde hun contentstrategie met AI-tools. Ze produceren nu 10x meer content zonder extra headcount.</p>
+                    <div class="case-stats">
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="10">0</span>x</div>
+                            <div class="stat-label">Meer output</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="2">0</span> dgn</div>
+                            <div class="stat-label">Trainingsduur</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="60">0</span>%</div>
+                            <div class="stat-label">Tijdsbesparing</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="4">0</span></div>
+                            <div class="stat-label">Teamleden</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card reveal reveal-delay-2">
+                    <span class="case-industry">Finance</span>
+                    <h3 class="case-title">AI-rapportages in minuten, niet in dagen</h3>
+                    <p class="case-description">Een financieel analist leerde data analyseren en rapportages genereren met AI. Wat vroeger 3 dagen kostte, doet hij nu in 2 uur.</p>
+                    <div class="case-stats">
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="90">0</span>%</div>
+                            <div class="stat-label">Sneller rapporteren</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="1">0</span> wk</div>
+                            <div class="stat-label">Trainingsduur</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="3">0</span>x</div>
+                            <div class="stat-label">Meer analyses/week</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="40">0</span>k</div>
+                            <div class="stat-label">Bespaard per jaar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card reveal reveal-delay-3">
+                    <span class="case-industry">HR & Recruitment</span>
+                    <h3 class="case-title">Slimmer werven met AI-automatisering</h3>
+                    <p class="case-description">Een HR-afdeling automatiseerde hun wervingsproces: van vacature tot eerste screening. Ze besparen nu 20 uur per vacature.</p>
+                    <div class="case-stats">
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="20">0</span>+</div>
+                            <div class="stat-label">Uur bespaard/vacature</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="3">0</span> dgn</div>
+                            <div class="stat-label">Trainingsduur</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="75">0</span>%</div>
+                            <div class="stat-label">Sneller screenen</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value"><span class="counter" data-target="280">0</span>%</div>
+                            <div class="stat-label">ROI eerste jaar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Ervaringen</span>
+                <h2 class="section-title">Wat deelnemers zeggen</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">"Na 2 dagen training deed ik mijn werk in de helft van de tijd. De trainers snappen hoe AI écht werkt op de werkvloer — niet alleen in theorie."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SV</div>
+                        <div class="author-info">
+                            <div class="author-name">Sophie van den Berg</div>
+                            <div class="author-role">Marketingmanager, Rabobank</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">"Eindelijk een cursus die niet puur theoretisch is. We oefenden direct met onze eigen use cases. Binnen een week draaide er een werkende AI-automatisering bij ons bedrijf."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TM</div>
+                        <div class="author-info">
+                            <div class="author-name">Thomas Mulder</div>
+                            <div class="author-role">Operations Director, Coolblue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <div class="testimonial-stars">
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    </div>
+                    <p class="testimonial-quote">"De bedrijfstraining op maat was precies wat we nodig hadden. Onze 30 medewerkers werken nu allemaal met AI — van de directie tot de klantenservice."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LJ</div>
+                        <div class="author-info">
+                            <div class="author-name">Laura Janssen</div>
+                            <div class="author-role">HR-directeur, Bol.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works / Onze Aanpak Section -->
+    <section class="how-it-works" id="aanpak">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Onze Aanpak</span>
+                <h2 class="section-title">Zo leer je bij ons</h2>
+                <p class="section-subtitle">Van eerste oriëntatie tot actief AI-gebruik op de werkvloer — onze aanpak is praktisch, persoonlijk en resultaatgericht.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-content reveal">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Gratis Kennismakingsgesprek</h3>
+                        <p class="step-description">We starten altijd met een vrijblijvend gesprek om te begrijpen waar jij of jouw team staat. We identificeren de beste AI-kansen voor jouw rol en branche, en adviseren welke training het meeste oplevert.</p>
+                        <ul class="step-features">
+                            <li>Persoonlijk adviesgesprek van 30 minuten</li>
+                            <li>Analyse van jouw huidige werkprocessen</li>
+                            <li>Op maat gemaakt trainingsadvies</li>
+                            <li>Geheel vrijblijvend en kosteloos</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual reveal reveal-delay-1">
+                        <div class="step-visual-mock">
+                            <div class="mock-ui">
+                                <div class="mock-header">
+                                    <div class="mock-dot green"></div>
+                                    <div class="mock-dot"></div>
+                                    <div class="mock-dot"></div>
+                                </div>
+                                <div class="mock-line short green"></div>
+                                <div class="mock-line long"></div>
+                                <div class="mock-line medium"></div>
+                                <div style="height:1px;background:#E5E5E5;margin:8px 0;"></div>
+                                <div class="mock-grid">
+                                    <div class="mock-card">
+                                        <div class="mock-number">30'</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-number">Free</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-line medium"></div>
+                                <div class="mock-line short"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-content reveal">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Hands-on Training</h3>
+                        <p class="step-description">Onze trainingen zijn geen doodsaaie presentaties. Je leert door direct te doen: met je eigen data, je eigen use cases en live begeleiding van ervaren AI-experts. Theorie dient alleen als fundament.</p>
+                        <ul class="step-features">
+                            <li>70% praktijk, 30% theorie</li>
+                            <li>Kleine groepen (max. 12 deelnemers)</li>
+                            <li>Oefenen met jouw eigen werkbestanden</li>
+                            <li>Direct toepasbaar op de werkvloer</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual reveal reveal-delay-1">
+                        <div class="step-visual-mock">
+                            <div class="mock-ui">
+                                <div class="mock-header">
+                                    <div class="mock-dot green"></div>
+                                    <div class="mock-dot"></div>
+                                    <div class="mock-dot"></div>
+                                </div>
+                                <div class="mock-line medium green"></div>
+                                <div class="mock-line long"></div>
+                                <div style="height:1px;background:#E5E5E5;margin:8px 0;"></div>
+                                <div class="mock-grid">
+                                    <div class="mock-card">
+                                        <div class="mock-number">70%</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-number">12</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-line long" style="background:rgba(0,0,0,0.06);"></div>
+                                <div class="mock-line medium"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-content reveal">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Toepassen & Groeien</h3>
+                        <p class="step-description">Na de training sta je er niet alleen voor. Je krijgt toegang tot ons alumni-netwerk, maandelijkse Q&A-sessies en voortdurend bijgewerkte leermateriaal. AI-tools veranderen snel — wij ook.</p>
+                        <ul class="step-features">
+                            <li>Toegang tot online leeromgeving (1 jaar)</li>
+                            <li>Maandelijkse live Q&A met experts</li>
+                            <li>Actieve alumni-community van 2400+ professionals</li>
+                            <li>Certificaat van deelname</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual reveal reveal-delay-1">
+                        <div class="step-visual-mock">
+                            <div class="mock-ui">
+                                <div class="mock-header">
+                                    <div class="mock-dot green"></div>
+                                    <div class="mock-dot green"></div>
+                                    <div class="mock-dot"></div>
+                                </div>
+                                <div class="mock-line short green"></div>
+                                <div class="mock-grid">
+                                    <div class="mock-card">
+                                        <div class="mock-number">2.4k</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-number">1 jr</div>
+                                        <div class="mock-line short"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-line long"></div>
+                                <div class="mock-line medium" style="background:rgba(0,0,0,0.08);"></div>
+                                <div class="mock-line short"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainingen / Courses Section -->
+    <section class="services" id="trainingen">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Ons Aanbod</span>
+                <h2 class="section-title">Trainingen voor elke behoefte</h2>
+                <p class="section-subtitle">Van introductie tot geavanceerd — wij hebben een training voor elke professional en elk bedrijf.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Beginner</span>
+                    <h3 class="service-title">AI Basistraining</h3>
+                    <p class="service-description">De perfecte start voor iedereen die nog weinig met AI heeft gewerkt. Leer de essentie van ChatGPT, prompting en AI-tools voor dagelijks gebruik.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            1 dag
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Max. 12 pers.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Populair</span>
+                    <h3 class="service-title">AI voor Professionals</h3>
+                    <p class="service-description">Verdiep je kennis en leer AI strategisch inzetten in jouw vakgebied. Van contentcreatie tot dataanalyse — volledig afgestemd op jouw sector.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            2 dagen
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Max. 10 pers.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Geavanceerd</span>
+                    <h3 class="service-title">AI-automatisering</h3>
+                    <p class="service-description">Bouw zelf AI-workflows met Make, n8n en Zapier. Automatiseer repetitieve taken en integreer AI in je bestaande systemen. Geen code-kennis vereist.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            3 dagen
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            Max. 8 pers.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Bedrijven</span>
+                    <h3 class="service-title">Bedrijfstraining op Maat</h3>
+                    <p class="service-description">Een training volledig afgestemd op jouw organisatie, branche en uitdagingen. Inclusief voorbereidingsgesprek, maatwerk curriculum en follow-up sessie.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Flexibel
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            5–50 pers.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Online</span>
+                    <h3 class="service-title">Online Leerplatform</h3>
+                    <p class="service-description">Leer in je eigen tempo met ons uitgebreide online platform. Meer dan 200 video-lessen, hands-on opdrachten en wekelijks nieuwe content over de nieuwste AI-ontwikkelingen.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Op eigen tempo
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            200+ lessen
+                        </span>
+                    </div>
+                </div>
+
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <span class="service-tag">Nieuw</span>
+                    <h3 class="service-title">AI Coaching & Mentoring</h3>
+                    <p class="service-description">Persoonlijke 1-op-1 begeleiding van een AI-expert. Perfecte voor leidinggevenden en ondernemers die een AI-strategie willen ontwikkelen voor hun organisatie.</p>
+                    <div class="service-meta">
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            4 × 1 uur
+                        </span>
+                        <span class="service-meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                            1-op-1
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2 class="cta-title">Klaar om AI écht te leren gebruiken?</h2>
+                <p class="cta-subtitle">Plan een vrijblijvend kennismakingsgesprek en ontdek welke training het beste bij jou of jouw team past. Geen verkoopgesprek — gewoon eerlijk advies.</p>
+                <a href="mailto:info@aiacademienederland.nl" class="cta-button">
+                    Plan een gratis gesprek
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                <p class="cta-note"><strong>30 minuten</strong> · 100% vrijblijvend · Direct persoonlijk advies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="over-ons">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">AI Academie <span>Nederland</span></span>
+                    <p>De toonaangevende AI-academie van Nederland. Praktische trainingen voor professionals en bedrijven die klaar zijn voor de toekomst.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Trainingen</h4>
+                    <ul>
+                        <li><a href="#trainingen">AI Basistraining</a></li>
+                        <li><a href="#trainingen">AI voor Professionals</a></li>
+                        <li><a href="#trainingen">AI-automatisering</a></li>
+                        <li><a href="#trainingen">Bedrijfstraining op Maat</a></li>
+                        <li><a href="#trainingen">Online Leerplatform</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Organisatie</h4>
+                    <ul>
+                        <li><a href="#over-ons">Over Ons</a></li>
+                        <li><a href="#aanpak">Onze Aanpak</a></li>
+                        <li><a href="#resultaten">Resultaten</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@aiacademienederland.nl">info@aiacademienederland.nl</a></li>
+                        <li><a href="tel:+31201234567">+31 20 123 45 67</a></li>
+                        <li><a href="#">Amsterdam, Nederland</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AI Academie Nederland. Alle rechten voorbehouden.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacybeleid</a>
+                    <a href="#">Algemene voorwaarden</a>
+                    <a href="#">Cookiebeleid</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollReveal();
+            initNavbar();
+            initParallax();
+            initCounters();
+            initCursorGlow();
+            initScrollProgress();
+        });
+
+        // Scroll Reveal Animation
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            reveals.forEach(el => observer.observe(el));
+        }
+
+        // Navbar Scroll Effect
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }, { passive: true });
+        }
+
+        // Parallax Effect for Floating Elements
+        function initParallax() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            const hero = document.getElementById('hero');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroHeight = hero.offsetHeight;
+
+                if (scrolled < heroHeight) {
+                    floatingElements.forEach(el => {
+                        const speed = parseFloat(el.dataset.speed) || 0.05;
+                        const yPos = scrolled * speed;
+                        el.style.transform = `translateY(${yPos}px)`;
+                    });
+                }
+            }, { passive: true });
+
+            // Mouse parallax for floating elements
+            if (window.innerWidth > 768) {
+                document.addEventListener('mousemove', (e) => {
+                    const mouseX = e.clientX / window.innerWidth - 0.5;
+                    const mouseY = e.clientY / window.innerHeight - 0.5;
+
+                    floatingElements.forEach(el => {
+                        const speed = parseFloat(el.dataset.speed) || 0.05;
+                        const x = mouseX * 50 * speed;
+                        const y = mouseY * 50 * speed;
+                        el.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                }, { passive: true });
+            }
+        }
+
+        // Animated Counters
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        function animateCounter(element) {
+            const target = parseFloat(element.dataset.target);
+            const duration = 2000;
+            const startTime = performance.now();
+            const isDecimal = target % 1 !== 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const current = target * easeOutQuart;
+
+                element.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = isDecimal ? target.toFixed(1) : target;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        // Cursor Glow Effect
+        function initCursorGlow() {
+            const glow = document.getElementById('cursorGlow');
+            if (!glow) return;
+
+            let mouseX = 0, mouseY = 0;
+            let glowX = 0, glowY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }, { passive: true });
+
+            function animateGlow() {
+                glowX += (mouseX - glowX) * 0.1;
+                glowY += (mouseY - glowY) * 0.1;
+                glow.style.left = glowX + 'px';
+                glow.style.top = glowY + 'px';
+                requestAnimationFrame(animateGlow);
+            }
+
+            animateGlow();
+        }
+
+        // Scroll Progress Indicator
+        function initScrollProgress() {
+            const progress = document.getElementById('scrollProgress');
+
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = window.pageYOffset / windowHeight;
+                progress.style.transform = `scaleX(${scrolled})`;
+            }, { passive: true });
+        }
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

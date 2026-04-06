@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursussen | AI Academie Nederland</title>
+    <meta name="description" content="Bekijk alle AI-cursussen van AI Academie Nederland. Praktisch, direct toepasbaar en beschikbaar als 1-op-1, online casus of groepstraining.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #FFFFFF;
+            --black-light: #F9F9F9;
+            --black-medium: #F5F5F5;
+            --black-soft: #EFEFEF;
+            --accent: #0D0D0D;
+            --accent-hover: #333333;
+            --white: #0D0D0D;
+            --gray-100: #111827;
+            --gray-200: #1F2937;
+            --gray-300: #374151;
+            --gray-400: #6B7280;
+            --gray-500: #9CA3AF;
+            --gray-600: #D1D5DB;
+            --gray-700: #E5E5E5;
+            --gray-800: #F5F5F5;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FFFFFF;
+            color: #0D0D0D;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Base ── */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        @media (min-width: 768px)  { .container { padding: 0 48px; } }
+        @media (min-width: 1200px) { .container { padding: 0 64px; } }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+        .reveal-delay-4 { transition-delay: 0.32s; }
+
+        /* ── Scroll progress ── */
+        .scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            background: #0D0D0D;
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #0D0D0D;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .logo span { font-weight: 800; }
+        .nav-links {
+            display: none;
+            gap: 40px;
+            list-style: none;
+        }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-links a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { color: #0D0D0D; }
+        .nav-cta {
+            background: #0D0D0D;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        .nav-cta:hover { background: #333333; transform: translateY(-2px); }
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        @media (min-width: 768px) { .nav-toggle { display: none; } }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #0D0D0D;
+            border-radius: 2px;
+        }
+
+        /* ── Hero ── */
+        .courses-hero {
+            padding: 140px 0 80px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        .hero-inner {
+            max-width: 720px;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6B7280;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 1px solid #E5E5E5;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 28px;
+        }
+        .courses-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            margin-bottom: 20px;
+            color: #0D0D0D;
+        }
+        .courses-hero h1 em {
+            font-style: italic;
+            font-weight: 800;
+        }
+        .courses-hero p {
+            font-size: 1.1rem;
+            color: #6B7280;
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .hero-meta-item .meta-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #0D0D0D;
+        }
+        .hero-meta-item .meta-label {
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+        }
+
+        /* ── Filter bar ── */
+        .filter-bar {
+            position: sticky;
+            top: 65px;
+            z-index: 100;
+            background: #FFFFFF;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        .filter-inner {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .filter-inner::-webkit-scrollbar { display: none; }
+        .filter-tab {
+            flex-shrink: 0;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #9CA3AF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+        .filter-tab:hover { color: #0D0D0D; }
+        .filter-tab.active {
+            color: #0D0D0D;
+            border-bottom-color: #0D0D0D;
+            font-weight: 600;
+        }
+
+        /* ── Deel intro ── */
+        .deel-intro {
+            padding: 72px 0 0;
+        }
+        .deel-intro-inner {
+            border-bottom: 1px solid #E5E5E5;
+            padding-bottom: 40px;
+            margin-bottom: 0;
+        }
+        .deel-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+        }
+        .deel-intro h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 10px;
+            color: #0D0D0D;
+        }
+        .deel-intro p {
+            font-size: 1rem;
+            color: #6B7280;
+            max-width: 560px;
+        }
+
+        /* ── Category section ── */
+        .courses-section {
+            padding: 64px 0 80px;
+            border-bottom: 1px solid #E5E5E5;
+        }
+        .courses-section:last-of-type {
+            border-bottom: none;
+        }
+        .category-header {
+            margin-bottom: 40px;
+        }
+        .category-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+        .category-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0D0D0D;
+        }
+
+        /* ── Course grid ── */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 640px)  { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .courses-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* ── Course card ── */
+        .course-card {
+            background: #F9F9F9;
+            border: 1px solid #E5E5E5;
+            border-top: 3px solid #E5E5E5;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: all 0.25s var(--transition-smooth);
+        }
+        .course-card:hover {
+            transform: translateY(-3px);
+            border-color: #D1D5DB;
+            border-top-color: #0D0D0D;
+            background: #FFFFFF;
+        }
+
+        .course-card-top {
+            flex: 1;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0D0D0D;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .course-tagline {
+            font-size: 0.875rem;
+            font-style: italic;
+            color: #6B7280;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .course-description {
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .course-divider {
+            height: 1px;
+            background: #E5E5E5;
+            margin-bottom: 20px;
+        }
+
+        .formats-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+        .formats-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+        .format-chip {
+            display: inline-block;
+            padding: 4px 10px;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6B7280;
+            background: #FFFFFF;
+        }
+
+        .btn-enroll {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 20px;
+            background: #0D0D0D;
+            color: #FFFFFF;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s var(--transition-smooth);
+            margin-top: auto;
+        }
+        .btn-enroll:hover {
+            background: #333333;
+            transform: translateY(-1px);
+        }
+        .btn-enroll svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+        .btn-enroll:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ── Deel divider ── */
+        .deel-divider {
+            background: #0D0D0D;
+            padding: 72px 0;
+            margin: 0;
+        }
+        .deel-divider-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        @media (min-width: 768px) {
+            .deel-divider-inner {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
+        .deel-divider-text .deel-tag-light {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+        }
+        .deel-divider h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+        .deel-divider p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+        }
+        .deel-divider-meta {
+            display: flex;
+            gap: 32px;
+            flex-shrink: 0;
+        }
+        .divider-meta-item .meta-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -0.03em;
+        }
+        .divider-meta-item .meta-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: 120px 0;
+            background: #0D0D0D;
+        }
+        .cta-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+        .cta-content p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+        .cta-btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-cta-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: #FFFFFF;
+            color: #0D0D0D;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+        .btn-cta-white:hover { background: #F5F5F5; transform: translateY(-2px); }
+        .btn-cta-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+        .btn-cta-outline:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 60px 0 40px;
+            background: #F9F9F9;
+            border-top: 1px solid #E5E5E5;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        @media (min-width: 768px) {
+            .footer-top { grid-template-columns: 1.5fr repeat(3, 1fr); }
+        }
+        .footer-brand .footer-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0D0D0D;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .footer-brand .footer-logo span { font-weight: 800; }
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            line-height: 1.7;
+            max-width: 240px;
+        }
+        .footer-col h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0D0D0D;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-col ul a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+        .footer-col ul a:hover { color: #0D0D0D; }
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+            border-top: 1px solid #E5E5E5;
+            padding-top: 32px;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+        }
+        .footer-copyright { color: #D1D5DB; font-size: 0.85rem; }
+        .footer-legal { display: flex; gap: 24px; }
+        .footer-legal a {
+            color: #D1D5DB;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+        .footer-legal a:hover { color: #6B7280; }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">AI Academie <span>Nederland</span></a>
+            <ul class="nav-links">
+                <li><a href="cursussen.html" class="active">Cursussen</a></li>
+                <li><a href="index.html#trainingen">Trainingen</a></li>
+                <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                <li><a href="index.html#resultaten">Resultaten</a></li>
+                <li><a href="index.html#over-ons">Over Ons</a></li>
+            </ul>
+            <a href="index.html#contact" class="nav-cta">Gratis Kennismaken</a>
+            <button class="nav-toggle" aria-label="Menu openen">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="courses-hero">
+        <div class="container">
+            <div class="hero-inner reveal">
+                <span class="hero-eyebrow">Online cursussen &amp; trainingen</span>
+                <h1>Leer AI <em>gebruiken</em>.<br>Niet theoretisch — praktisch.</h1>
+                <p>Zestien cursussen, direct toepasbaar op de werkvloer. Van website bouwen tot concurrentieanalyse — kies wat bij jou past en begin vandaag.</p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="meta-num">16</span>
+                        <span class="meta-label">Cursussen</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="meta-num">6</span>
+                        <span class="meta-label">Categorieën</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="meta-num">3</span>
+                        <span class="meta-label">Leervormen</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter tabs -->
+    <div class="filter-bar" id="filterBar">
+        <div class="container">
+            <div class="filter-inner">
+                <button class="filter-tab active" data-target="all">Alle cursussen</button>
+                <button class="filter-tab" data-target="bouwen">Bouwen &amp; Maken</button>
+                <button class="filter-tab" data-target="schrijven">Schrijven &amp; Communiceren</button>
+                <button class="filter-tab" data-target="codering">Codering</button>
+                <button class="filter-tab" data-target="onderzoek">Onderzoek &amp; Analyseren</button>
+                <button class="filter-tab" data-target="zakelijk">Zakelijk &amp; Strategie</button>
+                <button class="filter-tab" data-target="productiviteit">Productiviteit &amp; Werk</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════
+         DEEL 1 — PERSOONLIJK GEBRUIK
+    ════════════════════════════════════ -->
+    <div class="deel-intro">
+        <div class="container">
+            <div class="deel-intro-inner reveal">
+                <span class="deel-tag">Deel 1</span>
+                <h2>Persoonlijk gebruik</h2>
+                <p>Cursussen voor iedereen die AI wil leren gebruiken voor eigen projecten, werk of persoonlijke ontwikkeling.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bouwen & Maken -->
+    <section class="courses-section" id="bouwen">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 1 van 6</p>
+                <h3>Bouwen &amp; Maken</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Website bouwen met AI</h4>
+                        <p class="course-tagline">Een professionele website bouwen in een dag, niet in een week.</p>
+                        <p class="course-description">Met AI-tools zet je in no time een website neer die eruitziet alsof een webdesigner er uren aan heeft gewerkt. Leer hoe je die tools optimaal inzet voor jouw bedrijf of project.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">App bouwen met AI</h4>
+                        <p class="course-tagline">Jouw eigen app bouwen — zonder één regel code te kennen.</p>
+                        <p class="course-description">Met AI-tools bouw je in no time een werkende app die eruitziet alsof een developer er weken aan heeft gewerkt. Leer hoe je jouw idee vertaalt naar een werkend product.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Afbeeldingen &amp; video's genereren met AI</h4>
+                        <p class="course-tagline">Professionele beelden maken in minuten, niet uren.</p>
+                        <p class="course-description">Met AI-tools genereer je afbeeldingen en video's die eruitzien alsof een designer er uren aan heeft gewerkt. Leer hoe prompts werken en lever resultaten die opvallen.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Schrijven & Communiceren -->
+    <section class="courses-section" id="schrijven">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 2 van 6</p>
+                <h3>Schrijven &amp; Communiceren</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Prompts schrijven (beginner)</h4>
+                        <p class="course-tagline">De juiste vraag stellen is alles. Leer het vanaf de basis.</p>
+                        <p class="course-description">Met een goede prompt haal je uit AI-tools precies wat je nodig hebt. Leer heldere en effectieve instructies schrijven, zodat AI voor jou werkt — niet andersom.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Prompts schrijven (gevorderd)</h4>
+                        <p class="course-tagline">Haal het maximale uit AI met geavanceerde prompttechnieken.</p>
+                        <p class="course-description">Een goede prompt is meer dan een vraag — het is een strategie. Leer complexe prompts bouwen waarmee je AI stuurt als een professional, van rolgebaseerde instructies tot meerstaps-prompts.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Teksten schrijven met AI</h4>
+                        <p class="course-tagline">Professionele teksten schrijven in minuten, niet uren.</p>
+                        <p class="course-description">Met AI-tools schrijf je in no time blogs, e-mails en webteksten. Leer hoe je AI de juiste richting opstuurt en lever teksten die lezers aanspreken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor social media</h4>
+                        <p class="course-tagline">Meer bereik, minder tijd. Laat AI jouw social media runnen.</p>
+                        <p class="course-description">Met AI maak je in minuten posts, captions en campagnes die jouw doelgroep aanspreken. Leer hoe je consistent en professioneel aanwezig bent op social media, van Instagram tot LinkedIn.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Codering -->
+    <section class="courses-section" id="codering">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 3 van 6</p>
+                <h3>Codering</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Excel &amp; Google Sheets met AI</h4>
+                        <p class="course-tagline">Spreadsheets die zichzelf bijna invullen. Serieus.</p>
+                        <p class="course-description">Met AI-tools automatiseer je formules, analyses en rapportages. Leer hoe je AI laat rekenen en analyseren en lever overzichten waar je echte beslissingen op kunt baseren.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Coderen (beginner)</h4>
+                        <p class="course-tagline">Leer coderen met AI als je persoonlijke assistent.</p>
+                        <p class="course-description">Je hoeft geen programmeur te zijn om code te schrijven. Leer hoe je AI inzet om te coderen zonder technische achtergrond — van je eerste script tot een werkend programma.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Coderen (gevorderd)</h4>
+                        <p class="course-tagline">Schrijf betere code, sneller — met AI als copilot.</p>
+                        <p class="course-description">Voor developers die AI willen inzetten om productiever te werken. Leer geavanceerde technieken, van code reviews tot het bouwen van volledige applicaties die schaalbaar en onderhoudbaar zijn.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Onderzoek & Analyseren -->
+    <section class="courses-section" id="onderzoek">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 4 van 6</p>
+                <h3>Onderzoek &amp; Analyseren</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Onderzoeken met AI</h4>
+                        <p class="course-tagline">Diepgaand onderzoek doen in een fractie van de tijd.</p>
+                        <p class="course-description">Met AI-tools verzamel en analyseer je informatie sneller dan ooit. Leer hoe je AI inzet als onderzoeksassistent — van bronnen verzamelen tot samenvattingen maken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Analyseren met AI</h4>
+                        <p class="course-tagline">Slimme inzichten uit jouw data — in minuten.</p>
+                        <p class="course-description">Met AI-tools analyseer je rapporten, cijfers en gegevens razendsnel. Leer hoe je AI de juiste vragen stelt en lever inzichten waar je direct beslissingen op kunt baseren.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Concurrentieanalyse met AI</h4>
+                        <p class="course-tagline">Weet wat je concurrenten doen — voordat zij het jou vertellen.</p>
+                        <p class="course-description">Met AI-tools analyseer je de markt, de concurrentie en kansen die anderen missen. Leer hoe je data interpreteert en lever analyses die je bedrijf een voorsprong geven.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         DEEL 2 DIVIDER
+    ════════════════════════════════════ -->
+    <div class="deel-divider">
+        <div class="container">
+            <div class="deel-divider-inner reveal">
+                <div class="deel-divider-text">
+                    <span class="deel-tag-light">Deel 2</span>
+                    <h2>Zakelijk gebruik</h2>
+                    <p>Cursussen en trainingen gericht op bedrijven en organisaties die AI willen integreren in hun werkprocessen en teams.</p>
+                </div>
+                <div class="deel-divider-meta">
+                    <div class="divider-meta-item">
+                        <div class="meta-num">7</div>
+                        <div class="meta-label">Cursussen</div>
+                    </div>
+                    <div class="divider-meta-item">
+                        <div class="meta-num">2</div>
+                        <div class="meta-label">Categorieën</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zakelijk & Strategie -->
+    <section class="courses-section" id="zakelijk">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 5 van 6</p>
+                <h3>Zakelijk &amp; Strategie</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI integreren in je bedrijf</h4>
+                        <p class="course-tagline">Maak van AI een vast onderdeel van jouw bedrijfsvoering.</p>
+                        <p class="course-description">AI is niet langer een experiment — het is een concurrentievoordeel. Leer hoe je AI strategisch inzet binnen jouw organisatie, van procesoptimalisatie tot teamtraining.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor klantenservice</h4>
+                        <p class="course-tagline">Snellere antwoorden, tevredener klanten — met AI.</p>
+                        <p class="course-description">Met AI-tools beantwoord je klantvragen sneller, consistenter en buiten kantooruren. Leer hoe je AI traint op jouw merk — van chatbots tot geautomatiseerde e-mailresponse.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Juridisch en financieel met AI</h4>
+                        <p class="course-tagline">Complexe documenten en cijfers, in een fractie van de tijd.</p>
+                        <p class="course-description">Met AI-tools verwerk je contracten, rapporten en financiële data sneller dan ooit. Leer hoe je AI veilig en effectief inzet voor juridische en financiële taken binnen jouw organisatie.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Productiviteit & Werk -->
+    <section class="courses-section" id="productiviteit">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 6 van 6</p>
+                <h3>Productiviteit &amp; Werk</h3>
+            </div>
+            <div class="courses-grid">
+
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Cowork gebruiken (desktop automatisering)</h4>
+                        <p class="course-tagline">Laat AI de herhalende taken overnemen — jij focust op wat telt.</p>
+                        <p class="course-description">Met Cowork automatiseer je terugkerende taken op je desktop zonder te hoeven programmeren. Leer workflows bouwen die jouw werkdag efficiënter maken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor projectmanagement</h4>
+                        <p class="course-tagline">Projecten slimmer plannen, bewaken en afronden met AI.</p>
+                        <p class="course-description">Met AI-tools houd je grip op planning, voortgang en communicatie. Leer hoe je AI inzet als projectassistent die meedenkt, rapporteert en bewaakt — zodat projecten op tijd worden afgerond.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Vergaderingen &amp; notities met AI</h4>
+                        <p class="course-tagline">Nooit meer waardevolle informatie kwijt na een vergadering.</p>
+                        <p class="course-description">Met AI-tools transcribeer, samenvat en verwerk je vergaderingen automatisch. Leer hoe je meer uit elk overleg haalt — van live transcriptie tot actiepuntenlijsten — zonder zelf aantekeningen te maken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="course-card reveal reveal-delay-4">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor e-mailbeheer</h4>
+                        <p class="course-tagline">Inbox op nul — AI helpt je e-mails sneller verwerken.</p>
+                        <p class="course-description">Met AI-tools schrijf, sorteer en beantwoord je e-mails in een fractie van de tijd. Leer hoe je AI jouw schrijfstijl leert kennen en e-mails levert die professioneel en persoonlijk klinken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-enroll">
+                        Inschrijven
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content reveal">
+                <h2>Niet zeker waar je moet beginnen?</h2>
+                <p>Plan een gratis kennismakingsgesprek. We helpen je bepalen welke cursus het best bij jou of jouw team past.</p>
+                <div class="cta-btn-group">
+                    <a href="index.html#contact" class="btn-cta-white">
+                        Gratis adviesgesprek
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="index.html#trainingen" class="btn-cta-outline">Bedrijfstraining op maat</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">AI Academie <span>Nederland</span></span>
+                    <p>De toonaangevende AI-academie van Nederland. Praktische trainingen voor professionals en bedrijven die klaar zijn voor de toekomst.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Cursussen</h4>
+                    <ul>
+                        <li><a href="#bouwen">Bouwen &amp; Maken</a></li>
+                        <li><a href="#schrijven">Schrijven &amp; Communiceren</a></li>
+                        <li><a href="#codering">Codering</a></li>
+                        <li><a href="#onderzoek">Onderzoek &amp; Analyseren</a></li>
+                        <li><a href="#zakelijk">Zakelijk &amp; Strategie</a></li>
+                        <li><a href="#productiviteit">Productiviteit &amp; Werk</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Organisatie</h4>
+                    <ul>
+                        <li><a href="index.html#over-ons">Over Ons</a></li>
+                        <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                        <li><a href="index.html#resultaten">Resultaten</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@aiacademienederland.nl">info@aiacademienederland.nl</a></li>
+                        <li><a href="tel:+31201234567">+31 20 123 45 67</a></li>
+                        <li><a href="#">Amsterdam, Nederland</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AI Academie Nederland. Alle rechten voorbehouden.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacybeleid</a>
+                    <a href="#">Algemene voorwaarden</a>
+                    <a href="#">Cookiebeleid</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Scroll progress
+        const progress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const pct = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            progress.style.transform = `scaleX(${pct})`;
+        }, { passive: true });
+
+        // Filter tabs — scroll to section + highlight active
+        const tabs = document.querySelectorAll('.filter-tab');
+        const sectionMap = {
+            bouwen: 'bouwen', schrijven: 'schrijven', codering: 'codering',
+            onderzoek: 'onderzoek', zakelijk: 'zakelijk', productiviteit: 'productiviteit'
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.target;
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                if (target === 'all') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const section = document.getElementById(target);
+                    if (section) {
+                        const offset = section.getBoundingClientRect().top + window.pageYOffset - 130;
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Highlight active tab on scroll
+        const sections = ['bouwen','schrijven','codering','onderzoek','zakelijk','productiviteit'];
+        window.addEventListener('scroll', () => {
+            let current = 'all';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 160) current = id;
+            });
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.target === current) tab.classList.add('active');
+            });
+            if (current === 'all') tabs[0].classList.add('active');
+        }, { passive: true });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
