@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website bouwen met AI | AI Academie Nederland</title>
+    <meta name="description" content="Leer een professionele website bouwen met AI-tools. In één dag een website die eruitziet als professioneel maatwerk. Online, klassikaal of 1-op-1.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #0D0D0D;
+            --accent-hover: #333333;
+            --gray-400: #6B7280;
+            --gray-500: #9CA3AF;
+            --gray-600: #D1D5DB;
+            --gray-700: #E5E5E5;
+            --gray-800: #F5F5F5;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FFFFFF;
+            color: #0D0D0D;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        @media (min-width: 768px)  { .container { padding: 0 48px; } }
+        @media (min-width: 1200px) { .container { padding: 0 64px; } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.08s; }
+        .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+
+        /* Scroll progress */
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #0D0D0D; z-index: 9999; transform-origin: left; transform: scaleX(0); }
+
+        /* Nav */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: #FFFFFF; border-bottom: 1px solid #E5E5E5; transition: all 0.3s var(--transition-smooth); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.03em; color: #0D0D0D; text-decoration: none; display: flex; align-items: center; gap: 2px; }
+        .logo span { font-weight: 800; }
+        .nav-links { display: none; gap: 40px; list-style: none; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-links a { color: #6B7280; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #0D0D0D; }
+        .nav-cta { background: #0D0D0D; color: #FFFFFF; padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; font-size: 0.875rem; transition: all 0.3s var(--transition-smooth); }
+        .nav-cta:hover { background: #333333; transform: translateY(-2px); }
+        .nav-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        @media (min-width: 768px) { .nav-toggle { display: none; } }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: #0D0D0D; border-radius: 2px; }
+
+        /* Hero */
+        .course-hero { padding: 120px 0 60px; background: #FFFFFF; border-bottom: 1px solid #E5E5E5; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+        .breadcrumb a { color: #6B7280; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s ease; }
+        .breadcrumb a:hover { color: #0D0D0D; }
+        .breadcrumb-sep { color: #D1D5DB; font-size: 0.875rem; }
+        .course-category-tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E5E5; padding: 5px 12px; border-radius: var(--radius-sm); margin-bottom: 20px; }
+        .course-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; color: #0D0D0D; }
+        .course-hero .tagline { font-size: 1.15rem; font-style: italic; color: #6B7280; margin-bottom: 20px; line-height: 1.6; }
+        .course-hero .description { font-size: 1rem; color: #374151; line-height: 1.75; max-width: 680px; margin-bottom: 32px; }
+        .course-meta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+        .format-chip { display: inline-block; padding: 6px 12px; border: 1px solid #E5E5E5; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 500; color: #6B7280; background: #F9F9F9; }
+        .duration-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #0D0D0D; color: #FFFFFF; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; }
+
+        /* Wat leer je */
+        .learn-section { padding: 80px 0; background: #FFFFFF; border-bottom: 1px solid #E5E5E5; }
+        .section-label { font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
+        .learn-section h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 40px; }
+        .learn-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        @media (min-width: 640px) { .learn-grid { grid-template-columns: repeat(2, 1fr); } }
+        .learn-item { display: flex; align-items: flex-start; gap: 12px; padding: 20px; background: #F9F9F9; border: 1px solid #E5E5E5; border-radius: var(--radius-lg); }
+        .learn-item-check { flex-shrink: 0; width: 22px; height: 22px; background: #0D0D0D; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+        .learn-item-check svg { width: 12px; height: 12px; color: #FFFFFF; }
+        .learn-item p { font-size: 0.9rem; color: #374151; line-height: 1.55; font-weight: 500; }
+
+        /* Voor wie */
+        .audience-section { padding: 80px 0; background: #F9F9F9; border-bottom: 1px solid #E5E5E5; }
+        .audience-section h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 40px; }
+        .audience-list { display: flex; flex-direction: column; gap: 14px; max-width: 700px; }
+        .audience-item { display: flex; align-items: flex-start; gap: 14px; }
+        .audience-bullet { flex-shrink: 0; width: 8px; height: 8px; background: #0D0D0D; border-radius: 50%; margin-top: 7px; }
+        .audience-item p { font-size: 1rem; color: #374151; line-height: 1.65; }
+
+        /* Pricing */
+        .pricing-section { padding: 80px 0; background: #F9F9F9; border-top: 1px solid #E5E5E5; }
+        .pricing-section h2 { font-size: clamp(1.8rem,3vw,2.4rem); font-weight:800; letter-spacing:-0.03em; text-align:center; margin-bottom:10px; }
+        .pricing-section .pricing-subtitle { text-align:center; color:#6B7280; font-size:1.05rem; margin-bottom:48px; }
+        .pricing-grid { display:grid; grid-template-columns:1fr; gap:20px; }
+        @media(min-width:768px){ .pricing-grid { grid-template-columns:repeat(3,1fr); } }
+        .pricing-card { background:#FFFFFF; border:1px solid #E5E5E5; border-radius:8px; padding:28px; display:flex; flex-direction:column; }
+        .pricing-card.featured { border-color:#0D0D0D; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+        .pricing-badge-row { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+        .pricing-badge { display:inline-block; padding:4px 10px; border-radius:999px; font-size:0.75rem; font-weight:600; }
+        .pricing-badge.secondary { background:#F5F5F5; color:#6B7280; border:1px solid #E5E5E5; }
+        .pricing-badge.primary { background:#0D0D0D; color:#FFFFFF; }
+        .pricing-popular { font-size:0.72rem; font-weight:600; color:#0D0D0D; background:rgba(13,13,13,0.06); padding:3px 8px; border-radius:4px; }
+        .pricing-price { font-size:2rem; font-weight:800; letter-spacing:-0.03em; color:#0D0D0D; margin-bottom:8px; }
+        .pricing-desc { font-size:0.875rem; color:#6B7280; line-height:1.6; margin-bottom:0; }
+        .pricing-divider { height:1px; background:#E5E5E5; margin:20px 0; }
+        .pricing-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:0; flex:1; }
+        .pricing-features li { display:flex; align-items:flex-start; gap:8px; font-size:0.875rem; color:#374151; }
+        .pricing-features li::before { content:"✓"; font-weight:700; color:#0D0D0D; flex-shrink:0; }
+        .pricing-cta { margin-top:24px; }
+        .btn-pricing-primary { display:block; width:100%; padding:13px 20px; background:#0D0D0D; color:#FFFFFF; border:none; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; text-align:center; text-decoration:none; cursor:pointer; transition:background 0.2s ease; }
+        .btn-pricing-primary:hover { background:#333333; }
+        .btn-pricing-secondary { display:block; width:100%; padding:13px 20px; background:#FFFFFF; color:#0D0D0D; border:1px solid #D1D5DB; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; text-align:center; text-decoration:none; cursor:pointer; transition:all 0.2s ease; }
+        .btn-pricing-secondary:hover { border-color:#0D0D0D; background:#F9F9F9; }
+
+        /* Footer */
+        footer { padding: 60px 0 40px; background: #F9F9F9; border-top: 1px solid #E5E5E5; }
+        .footer-top { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+        @media (min-width: 768px) { .footer-top { grid-template-columns: 1.5fr repeat(3, 1fr); } }
+        .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 700; color: #0D0D0D; letter-spacing: -0.03em; margin-bottom: 16px; display: block; }
+        .footer-brand .footer-logo span { font-weight: 800; }
+        .footer-brand p { font-size: 0.9rem; color: #9CA3AF; line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.8rem; font-weight: 600; color: #0D0D0D; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul a { color: #9CA3AF; text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
+        .footer-col ul a:hover { color: #0D0D0D; }
+        .footer-bottom { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; border-top: 1px solid #E5E5E5; padding-top: 32px; }
+        @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+        .footer-copyright { color: #D1D5DB; font-size: 0.85rem; }
+        .footer-legal { display: flex; gap: 24px; }
+        .footer-legal a { color: #D1D5DB; text-decoration: none; font-size: 0.85rem; transition: color 0.2s ease; }
+        .footer-legal a:hover { color: #6B7280; }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">AI Academie <span>Nederland</span></a>
+            <ul class="nav-links">
+                <li><a href="cursussen.html" class="active">Cursussen</a></li>
+                <li><a href="index.html#trainingen">Trainingen</a></li>
+                <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                <li><a href="index.html#resultaten">Resultaten</a></li>
+                <li><a href="index.html#over-ons">Over Ons</a></li>
+            </ul>
+            <a href="index.html#contact" class="nav-cta">Gratis Kennismaken</a>
+            <button class="nav-toggle" aria-label="Menu openen"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="course-hero">
+        <div class="container">
+            <div class="reveal">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="cursussen.html">← Terug naar alle cursussen</a>
+                </nav>
+                <span class="course-category-tag">Bouwen &amp; Maken</span>
+                <h1>Website bouwen met AI</h1>
+                <p class="tagline">Een professionele website bouwen in een dag, niet in een week.</p>
+                <p class="description">Met AI-tools zet je in no time een website neer die eruitziet alsof een webdesigner er uren aan heeft gewerkt. Je leert welke tools het beste werken, hoe je ze aanstuurde met de juiste prompts, en hoe je een resultaat aflevert waar jij — en je klanten — trots op zijn.</p>
+                <div class="course-meta-row">
+                    <span class="format-chip">1-op-1</span>
+                    <span class="format-chip">Online casus</span>
+                    <span class="format-chip">Groepen</span>
+                    <span class="duration-badge">±3 uur leermateriaal</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wat leer je -->
+    <section class="learn-section">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Inhoud</p>
+                <h2>Wat leer je?</h2>
+            </div>
+            <div class="learn-grid">
+                <div class="learn-item reveal reveal-delay-1">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>De beste AI-websitebouwers vergelijken en kiezen voor jouw project</p>
+                </div>
+                <div class="learn-item reveal reveal-delay-2">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>Effectieve prompts schrijven die een professioneel ontwerp genereren</p>
+                </div>
+                <div class="learn-item reveal reveal-delay-3">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>Een landingspagina opzetten die converteert — zonder code te schrijven</p>
+                </div>
+                <div class="learn-item reveal reveal-delay-1">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>Jouw website aanpassen en optimaliseren met AI-feedback</p>
+                </div>
+                <div class="learn-item reveal reveal-delay-2">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>Afbeeldingen, teksten en structuur laten genereren door AI</p>
+                </div>
+                <div class="learn-item reveal reveal-delay-3">
+                    <div class="learn-item-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg></div>
+                    <p>Je website publiceren en klaar maken voor echte bezoekers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voor wie -->
+    <section class="audience-section">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Doelgroep</p>
+                <h2>Voor wie?</h2>
+            </div>
+            <div class="audience-list">
+                <div class="audience-item reveal reveal-delay-1">
+                    <div class="audience-bullet"></div>
+                    <p>Ondernemers en zzp'ers die een professionele online aanwezigheid willen zonder hoge kosten</p>
+                </div>
+                <div class="audience-item reveal reveal-delay-2">
+                    <div class="audience-bullet"></div>
+                    <p>Marketeers en communicatieprofessionals die snel landingspagina's of campagnesites nodig hebben</p>
+                </div>
+                <div class="audience-item reveal reveal-delay-3">
+                    <div class="audience-bullet"></div>
+                    <p>Iedereen die een idee, product of dienst online wil presenteren — zonder technische achtergrond</p>
+                </div>
+                <div class="audience-item reveal reveal-delay-1">
+                    <div class="audience-bullet"></div>
+                    <p>Professionals die willen leren hoe AI hun werkproces rondom content en design kan versnellen</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="reveal">
+                <h2>Kies jouw leertraject</h2>
+                <p class="pricing-subtitle">Selecteer het format dat het best bij jou past.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal reveal-delay-1">
+                    <div class="pricing-badge-row">
+                        <span class="pricing-badge secondary">Online leertraject</span>
+                    </div>
+                    <div class="pricing-price">€15</div>
+                    <p class="pricing-desc">Leer in je eigen tempo via ons interactieve online leerplatform.</p>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li>2 uur videomateriaal</li>
+                        <li>Praktische opdrachten</li>
+                        <li>Levenslange toegang</li>
+                        <li>Certificaat bij voltooiing</li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="index.html#contact" class="btn-pricing-secondary">Start voor €15</a>
+                    </div>
+                </div>
+                <div class="pricing-card featured reveal reveal-delay-2">
+                    <div class="pricing-badge-row">
+                        <span class="pricing-badge primary">Klassikale online les</span>
+                        <span class="pricing-popular">Meest gekozen</span>
+                    </div>
+                    <div class="pricing-price">€35</div>
+                    <p class="pricing-desc">Volg een live online les in een kleine groep met directe begeleiding.</p>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li>Live sessie (max. 10 deelnemers)</li>
+                        <li>Stel direct vragen aan de trainer</li>
+                        <li>Interactieve oefeningen</li>
+                        <li>Opname achteraf beschikbaar</li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="index.html#contact" class="btn-pricing-primary">Inschrijven voor €35</a>
+                    </div>
+                </div>
+                <div class="pricing-card reveal reveal-delay-3">
+                    <div class="pricing-badge-row">
+                        <span class="pricing-badge secondary">1-op-1 begeleiding</span>
+                    </div>
+                    <div class="pricing-price">€235</div>
+                    <p class="pricing-desc">Gegarandeerd de basis onder de knie — in maximaal 4 persoonlijke lessen.</p>
+                    <div class="pricing-divider"></div>
+                    <ul class="pricing-features">
+                        <li>4 persoonlijke sessies</li>
+                        <li>Volledig op jouw niveau en tempo</li>
+                        <li>Directe feedback op jouw werk</li>
+                        <li>Gegarandeerd resultaat of geld terug</li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="index.html#contact" class="btn-pricing-secondary">Plan een les</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">AI Academie <span>Nederland</span></span>
+                    <p>De toonaangevende AI-academie van Nederland. Praktische trainingen voor professionals en bedrijven die klaar zijn voor de toekomst.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Cursussen</h4>
+                    <ul>
+                        <li><a href="cursussen.html#bouwen">Bouwen &amp; Maken</a></li>
+                        <li><a href="cursussen.html#schrijven">Schrijven &amp; Communiceren</a></li>
+                        <li><a href="cursussen.html#codering">Codering</a></li>
+                        <li><a href="cursussen.html#onderzoek">Onderzoek &amp; Analyseren</a></li>
+                        <li><a href="cursussen.html#zakelijk">Zakelijk &amp; Strategie</a></li>
+                        <li><a href="cursussen.html#productiviteit">Productiviteit &amp; Werk</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Organisatie</h4>
+                    <ul>
+                        <li><a href="index.html#over-ons">Over Ons</a></li>
+                        <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                        <li><a href="index.html#resultaten">Resultaten</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@aiacademienederland.nl">info@aiacademienederland.nl</a></li>
+                        <li><a href="tel:+31201234567">+31 20 123 45 67</a></li>
+                        <li><a href="#">Amsterdam, Nederland</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AI Academie Nederland. Alle rechten voorbehouden.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacybeleid</a>
+                    <a href="#">Algemene voorwaarden</a>
+                    <a href="#">Cookiebeleid</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        const progress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const pct = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            progress.style.transform = `scaleX(${pct})`;
+        }, { passive: true });
+    </script>
+</body>
+</html>

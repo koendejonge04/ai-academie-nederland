@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakelijk AI-gebruik | AI Academie Nederland</title>
+    <meta name="description" content="AI-trainingen voor bedrijven en organisaties. Integreer AI in uw werkprocessen en teams. Bekijk ons aanbod en plan direct een afspraak.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --radius-sm: 4px; --radius-md: 6px; --radius-lg: 8px; --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #FFFFFF; color: #0D0D0D; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        @media (min-width: 768px)  { .container { padding: 0 48px; } }
+        @media (min-width: 1200px) { .container { padding: 0 64px; } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s var(--transition-smooth), transform 0.7s var(--transition-smooth); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.08s; } .reveal-delay-2 { transition-delay: 0.16s; }
+        .reveal-delay-3 { transition-delay: 0.24s; } .reveal-delay-4 { transition-delay: 0.32s; }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: #0D0D0D; z-index: 9999; transform-origin: left; transform: scaleX(0); }
+
+        /* Nav */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: #FFFFFF; border-bottom: 1px solid #E5E5E5; transition: all 0.3s var(--transition-smooth); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.03em; color: #0D0D0D; text-decoration: none; display: flex; align-items: center; gap: 2px; }
+        .logo span { font-weight: 800; }
+        .nav-links { display: none; gap: 40px; list-style: none; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-links a { color: #6B7280; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #0D0D0D; }
+        .nav-cta { background: #0D0D0D; color: #FFFFFF; padding: 12px 24px; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; font-size: 0.875rem; transition: all 0.3s ease; }
+        .nav-cta:hover { background: #333333; transform: translateY(-2px); }
+        .nav-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        @media (min-width: 768px) { .nav-toggle { display: none; } }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: #0D0D0D; border-radius: 2px; }
+
+        /* Hero */
+        .hero { padding: 140px 0 80px; background: #FFFFFF; border-bottom: 1px solid #E5E5E5; }
+        .hero-inner { max-width: 720px; }
+        .hero-eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.15em; border: 1px solid #E5E5E5; padding: 6px 14px; border-radius: var(--radius-sm); margin-bottom: 28px; }
+        .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 20px; }
+        .hero h1 em { font-style: italic; }
+        .hero p { font-size: 1.1rem; color: #6B7280; max-width: 560px; line-height: 1.7; margin-bottom: 40px; }
+        .hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+        .hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+        .meta-num { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+        .meta-label { font-size: 0.8rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+        /* Section intro */
+        .section-intro { padding: 72px 0 0; }
+        .section-intro-inner { border-bottom: 1px solid #E5E5E5; padding-bottom: 40px; }
+        .deel-tag { display: inline-block; font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; }
+        .section-intro h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
+        .section-intro p { font-size: 1rem; color: #6B7280; max-width: 560px; }
+
+        /* Course sections */
+        .courses-section { padding: 64px 0 80px; border-bottom: 1px solid #E5E5E5; }
+        .category-header { margin-bottom: 40px; }
+        .category-label { font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 8px; }
+        .category-header h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+        .courses-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 640px)  { .courses-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .courses-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* Course card */
+        .course-card { background: #F9F9F9; border: 1px solid #E5E5E5; border-top: 3px solid #E5E5E5; border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; transition: all 0.25s var(--transition-smooth); text-decoration: none; color: inherit; }
+        .course-card:hover { transform: translateY(-3px); border-color: #D1D5DB; border-top-color: #0D0D0D; background: #FFFFFF; }
+        .course-card-top { flex: 1; }
+        .course-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.3; }
+        .course-tagline { font-size: 0.875rem; font-style: italic; color: #6B7280; margin-bottom: 16px; line-height: 1.5; }
+        .course-description { font-size: 0.9rem; color: #374151; line-height: 1.65; margin-bottom: 20px; }
+        .course-divider { height: 1px; background: #E5E5E5; margin-bottom: 20px; }
+        .formats-label { font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+        .formats-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+        .format-chip { display: inline-block; padding: 4px 10px; border: 1px solid #E5E5E5; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 500; color: #6B7280; background: #FFFFFF; }
+        .btn-info { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 600; color: #6B7280; text-decoration: none; margin-top: auto; transition: color 0.2s ease; }
+        .btn-info:hover { color: #0D0D0D; }
+
+        /* CTA dark */
+        .cta-dark { background: #0D0D0D; padding: 100px 0; }
+        .cta-dark-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+        .cta-dark h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: #FFFFFF; margin-bottom: 16px; line-height: 1.1; }
+        .cta-dark p { font-size: 1.05rem; color: rgba(255,255,255,0.6); margin-bottom: 40px; line-height: 1.7; }
+        .btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; background: #FFFFFF; color: #0D0D0D; border-radius: var(--radius-md); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.25s ease; }
+        .btn-white:hover { background: #F5F5F5; transform: translateY(-2px); }
+
+        /* Calendar booking */
+        .calendar-section { padding: 100px 0; background: #FFFFFF; border-top: 1px solid #E5E5E5; }
+        .calendar-section-header { text-align: center; margin-bottom: 60px; }
+        .calendar-section-header h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 12px; }
+        .calendar-section-header p { font-size: 1.05rem; color: #6B7280; }
+        .calendar-wrapper { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
+        @media (min-width: 768px) { .calendar-wrapper { grid-template-columns: 1fr 1fr; } }
+
+        /* Calendar widget */
+        .cal-widget { background: #F9F9F9; border: 1px solid #E5E5E5; border-radius: var(--radius-lg); padding: 28px; }
+        .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .cal-month-label { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+        .cal-nav { display: flex; gap: 4px; }
+        .cal-nav-btn { width: 32px; height: 32px; background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: var(--radius-sm); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #6B7280; transition: all 0.2s ease; }
+        .cal-nav-btn:hover { border-color: #0D0D0D; color: #0D0D0D; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .cal-day-header { text-align: center; font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 0; }
+        .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 500; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.15s ease; border: 1px solid transparent; }
+        .cal-day.empty { cursor: default; }
+        .cal-day.disabled { color: #D1D5DB; cursor: not-allowed; }
+        .cal-day.available { color: #0D0D0D; background: #FFFFFF; border-color: #E5E5E5; }
+        .cal-day.available:hover { background: #F5F5F5; border-color: #0D0D0D; }
+        .cal-day.selected { background: #0D0D0D; color: #FFFFFF; border-color: #0D0D0D; }
+        .cal-day.today { font-weight: 800; }
+
+        /* Time slots */
+        .slots-panel { background: #F9F9F9; border: 1px solid #E5E5E5; border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; }
+        .slots-title { font-size: 0.875rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+        .slots-selected-date { font-size: 1rem; font-weight: 700; margin-bottom: 20px; min-height: 1.5em; }
+        .slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; }
+        .slot-btn { padding: 10px 8px; background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500; color: #374151; cursor: pointer; transition: all 0.15s ease; text-align: center; }
+        .slot-btn:hover { border-color: #0D0D0D; color: #0D0D0D; }
+        .slot-btn.selected { background: #0D0D0D; color: #FFFFFF; border-color: #0D0D0D; }
+        .slots-placeholder { color: #9CA3AF; font-size: 0.9rem; line-height: 1.6; flex: 1; display: flex; align-items: center; }
+
+        /* Booking form */
+        .booking-form-wrap { margin-top: 0; }
+        .booking-form { display: flex; flex-direction: column; gap: 14px; }
+        .form-field { display: flex; flex-direction: column; gap: 6px; }
+        .form-field label { font-size: 0.8rem; font-weight: 600; color: #374151; }
+        .form-field input, .form-field textarea {
+            padding: 10px 14px;
+            border: 1px solid #E5E5E5;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #0D0D0D;
+            background: #FFFFFF;
+            transition: border-color 0.2s ease;
+            outline: none;
+        }
+        .form-field input:focus, .form-field textarea:focus { border-color: #0D0D0D; }
+        .form-field textarea { resize: vertical; min-height: 80px; }
+        .btn-book { width: 100%; padding: 13px 20px; background: #0D0D0D; color: #FFFFFF; border: none; border-radius: var(--radius-md); font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.2s ease; margin-top: 4px; }
+        .btn-book:hover { background: #333333; }
+        .booking-success { display: none; background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+        .booking-success p { color: #166534; font-size: 0.95rem; line-height: 1.65; font-weight: 500; }
+
+        /* Footer */
+        footer { padding: 60px 0 40px; background: #F9F9F9; border-top: 1px solid #E5E5E5; }
+        .footer-top { display: grid; grid-template-columns: 1fr; gap: 48px; margin-bottom: 48px; }
+        @media (min-width: 768px) { .footer-top { grid-template-columns: 1.5fr repeat(3, 1fr); } }
+        .footer-brand .footer-logo { font-size: 1.1rem; font-weight: 700; color: #0D0D0D; letter-spacing: -0.03em; margin-bottom: 16px; display: block; }
+        .footer-brand .footer-logo span { font-weight: 800; }
+        .footer-brand p { font-size: 0.9rem; color: #9CA3AF; line-height: 1.7; max-width: 240px; }
+        .footer-col h4 { font-size: 0.8rem; font-weight: 600; color: #0D0D0D; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul a { color: #9CA3AF; text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
+        .footer-col ul a:hover { color: #0D0D0D; }
+        .footer-bottom { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; border-top: 1px solid #E5E5E5; padding-top: 32px; }
+        @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; } }
+        .footer-copyright { color: #D1D5DB; font-size: 0.85rem; }
+        .footer-legal { display: flex; gap: 24px; }
+        .footer-legal a { color: #D1D5DB; text-decoration: none; font-size: 0.85rem; } .footer-legal a:hover { color: #6B7280; }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">AI Academie <span>Nederland</span></a>
+            <ul class="nav-links">
+                <li><a href="cursussen.html">Cursussen</a></li>
+                <li><a href="index.html#trainingen">Trainingen</a></li>
+                <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                <li><a href="index.html#resultaten">Resultaten</a></li>
+                <li><a href="index.html#over-ons">Over Ons</a></li>
+            </ul>
+            <a href="index.html#contact" class="nav-cta">Gratis Kennismaken</a>
+            <button class="nav-toggle" aria-label="Menu openen"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner reveal">
+                <span class="hero-eyebrow">Zakelijk AI-gebruik</span>
+                <h1>AI die <em>werkt</em> voor jouw organisatie.</h1>
+                <p>Trainingen en trajecten gericht op bedrijven die AI willen integreren in werkprocessen, teams en strategie. Praktisch, direct toepasbaar en op maat.</p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item"><span class="meta-num">7</span><span class="meta-label">Trajecten</span></div>
+                    <div class="hero-meta-item"><span class="meta-num">2</span><span class="meta-label">Categorieën</span></div>
+                    <div class="hero-meta-item"><span class="meta-num">3</span><span class="meta-label">Leervormen</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro -->
+    <div class="section-intro">
+        <div class="container">
+            <div class="section-intro-inner reveal">
+                <span class="deel-tag">Zakelijk gebruik</span>
+                <h2>Trainingen voor teams en organisaties</h2>
+                <p>Cursussen gericht op bedrijven die AI willen inzetten om slimmer te werken, klanten beter te bedienen en concurrentievoordeel te behalen.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zakelijk & Strategie -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 1 van 2</p>
+                <h3>Zakelijk &amp; Strategie</h3>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI integreren in je bedrijf</h4>
+                        <p class="course-tagline">Maak van AI een vast onderdeel van jouw bedrijfsvoering.</p>
+                        <p class="course-description">AI is niet langer een experiment — het is een concurrentievoordeel. Leer hoe je AI strategisch inzet binnen jouw organisatie, van procesoptimalisatie tot teamtraining.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor klantenservice</h4>
+                        <p class="course-tagline">Snellere antwoorden, tevredener klanten — met AI.</p>
+                        <p class="course-description">Met AI-tools beantwoord je klantvragen sneller, consistenter en buiten kantooruren. Leer hoe je AI traint op jouw merk — van chatbots tot geautomatiseerde e-mailresponse.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Juridisch en financieel met AI</h4>
+                        <p class="course-tagline">Complexe documenten en cijfers, in een fractie van de tijd.</p>
+                        <p class="course-description">Met AI-tools verwerk je contracten, rapporten en financiële data sneller dan ooit. Leer hoe je AI veilig en effectief inzet voor juridische en financiële taken binnen jouw organisatie.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productiviteit & Werk -->
+    <section class="courses-section" style="border-bottom:none;">
+        <div class="container">
+            <div class="category-header reveal">
+                <p class="category-label">Categorie 2 van 2</p>
+                <h3>Productiviteit &amp; Werk</h3>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card reveal reveal-delay-1">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Cowork gebruiken (desktop automatisering)</h4>
+                        <p class="course-tagline">Laat AI de herhalende taken overnemen — jij focust op wat telt.</p>
+                        <p class="course-description">Met Cowork automatiseer je terugkerende taken op je desktop zonder te hoeven programmeren. Leer workflows bouwen die jouw werkdag efficiënter maken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+                <div class="course-card reveal reveal-delay-2">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor projectmanagement</h4>
+                        <p class="course-tagline">Projecten slimmer plannen, bewaken en afronden met AI.</p>
+                        <p class="course-description">Met AI-tools houd je grip op planning, voortgang en communicatie. Leer hoe je AI inzet als projectassistent die meedenkt, rapporteert en bewaakt — zodat projecten op tijd worden afgerond.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+                <div class="course-card reveal reveal-delay-3">
+                    <div class="course-card-top">
+                        <h4 class="course-title">Vergaderingen &amp; notities met AI</h4>
+                        <p class="course-tagline">Nooit meer waardevolle informatie kwijt na een vergadering.</p>
+                        <p class="course-description">Met AI-tools transcribeer, samenvat en verwerk je vergaderingen automatisch. Leer hoe je meer uit elk overleg haalt — van live transcriptie tot actiepuntenlijsten.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+                <div class="course-card reveal reveal-delay-4">
+                    <div class="course-card-top">
+                        <h4 class="course-title">AI voor e-mailbeheer</h4>
+                        <p class="course-tagline">Inbox op nul — AI helpt je e-mails sneller verwerken.</p>
+                        <p class="course-description">Met AI-tools schrijf, sorteer en beantwoord je e-mails in een fractie van de tijd. Leer hoe je AI jouw schrijfstijl leert kennen en e-mails levert die professioneel en persoonlijk klinken.</p>
+                        <div class="course-divider"></div>
+                        <p class="formats-label">Beschikbaar als</p>
+                        <div class="formats-list">
+                            <span class="format-chip">1-op-1</span>
+                            <span class="format-chip">Online casus</span>
+                            <span class="format-chip">Groepen</span>
+                        </div>
+                    </div>
+                    <a href="index.html#contact" class="btn-info">Meer informatie →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark CTA -->
+    <section class="cta-dark">
+        <div class="container">
+            <div class="cta-dark-inner reveal">
+                <h2>Interesse in een zakelijke training?</h2>
+                <p>Plan een vrijblijvend gesprek. We bespreken jouw wensen en stellen een trainingsprogramma op maat samen voor jouw team of organisatie.</p>
+                <a href="index.html#contact" class="btn-white">
+                    Plan een kennismakingsgesprek
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar booking -->
+    <section class="calendar-section" id="afspraak">
+        <div class="container">
+            <div class="calendar-section-header reveal">
+                <h2>Of plan direct een afspraak</h2>
+                <p>Kies een datum en tijdstip dat voor jou uitkomt.</p>
+            </div>
+            <div class="calendar-wrapper reveal">
+                <!-- Calendar -->
+                <div class="cal-widget">
+                    <div class="cal-header">
+                        <span class="cal-month-label" id="calMonthLabel"></span>
+                        <div class="cal-nav">
+                            <button class="cal-nav-btn" id="calPrev" title="Vorige maand">&#8249;</button>
+                            <button class="cal-nav-btn" id="calNext" title="Volgende maand">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="cal-grid" id="calGrid"></div>
+                </div>
+
+                <!-- Slots + form panel -->
+                <div class="slots-panel">
+                    <p class="slots-title">Beschikbare tijdslots</p>
+                    <div class="slots-selected-date" id="slotsDate"></div>
+                    <div id="slotsContainer">
+                        <p class="slots-placeholder">Selecteer een datum om beschikbare tijdslots te zien.</p>
+                    </div>
+                    <div class="booking-form-wrap" id="bookingFormWrap" style="display:none;">
+                        <form class="booking-form" id="bookingForm">
+                            <div class="form-field">
+                                <label for="bNaam">Naam *</label>
+                                <input type="text" id="bNaam" name="naam" required placeholder="Jouw naam">
+                            </div>
+                            <div class="form-field">
+                                <label for="bEmail">E-mailadres *</label>
+                                <input type="email" id="bEmail" name="email" required placeholder="naam@bedrijf.nl">
+                            </div>
+                            <div class="form-field">
+                                <label for="bBedrijf">Bedrijfsnaam</label>
+                                <input type="text" id="bBedrijf" name="bedrijf" placeholder="Optioneel">
+                            </div>
+                            <div class="form-field">
+                                <label for="bBericht">Bericht</label>
+                                <textarea id="bBericht" name="bericht" placeholder="Waar kunnen we u mee helpen?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-book">Bevestig afspraak</button>
+                        </form>
+                    </div>
+                    <div class="booking-success" id="bookingSuccess">
+                        <p>Bedankt! We nemen zo snel mogelijk contact op om uw afspraak te bevestigen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">AI Academie <span>Nederland</span></span>
+                    <p>De toonaangevende AI-academie van Nederland. Praktische trainingen voor professionals en bedrijven die klaar zijn voor de toekomst.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Cursussen</h4>
+                    <ul>
+                        <li><a href="cursussen.html#bouwen">Bouwen &amp; Maken</a></li>
+                        <li><a href="cursussen.html#schrijven">Schrijven &amp; Communiceren</a></li>
+                        <li><a href="cursussen.html#codering">Codering</a></li>
+                        <li><a href="cursussen.html#onderzoek">Onderzoek &amp; Analyseren</a></li>
+                        <li><a href="zakelijk.html">Zakelijk gebruik</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Organisatie</h4>
+                    <ul>
+                        <li><a href="index.html#over-ons">Over Ons</a></li>
+                        <li><a href="index.html#aanpak">Onze Aanpak</a></li>
+                        <li><a href="index.html#resultaten">Resultaten</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@aiacademienederland.nl">info@aiacademienederland.nl</a></li>
+                        <li><a href="tel:+31201234567">+31 20 123 45 67</a></li>
+                        <li><a href="#">Amsterdam, Nederland</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AI Academie Nederland. Alle rechten voorbehouden.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacybeleid</a>
+                    <a href="#">Algemene voorwaarden</a>
+                    <a href="#">Cookiebeleid</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Scroll progress
+        const progress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const pct = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            progress.style.transform = `scaleX(${pct})`;
+        }, { passive: true });
+
+        // ── Calendar ──────────────────────────────────────────────
+        const NL_DAYS = ['Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za', 'Zo'];
+        const NL_MONTHS = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+        const TIME_SLOTS = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+
+        let viewYear, viewMonth, selectedDate = null, selectedSlot = null;
+
+        function initCalendar() {
+            const now = new Date();
+            viewYear = now.getFullYear();
+            viewMonth = now.getMonth();
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const label = document.getElementById('calMonthLabel');
+            const grid = document.getElementById('calGrid');
+            label.textContent = NL_MONTHS[viewMonth] + ' ' + viewYear;
+
+            grid.innerHTML = '';
+
+            // Day headers (Mon–Sun)
+            NL_DAYS.forEach(d => {
+                const h = document.createElement('div');
+                h.className = 'cal-day-header';
+                h.textContent = d;
+                grid.appendChild(h);
+            });
+
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            // First day of month (0=Sun…6=Sat → convert to Mon-based)
+            const firstDay = new Date(viewYear, viewMonth, 1);
+            let startOffset = firstDay.getDay(); // 0=Sun
+            startOffset = (startOffset === 0) ? 6 : startOffset - 1; // Mon=0
+
+            // Empty cells
+            for (let i = 0; i < startOffset; i++) {
+                const e = document.createElement('div');
+                e.className = 'cal-day empty';
+                grid.appendChild(e);
+            }
+
+            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const date = new Date(viewYear, viewMonth, d);
+                const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+                const isPast = date < today;
+                const isToday = date.getTime() === today.getTime();
+
+                const cell = document.createElement('div');
+                cell.textContent = d;
+
+                const dateStr = viewYear + '-' + String(viewMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+
+                if (isWeekend || isPast) {
+                    cell.className = 'cal-day disabled';
+                } else {
+                    cell.className = 'cal-day available' + (isToday ? ' today' : '') + (selectedDate === dateStr ? ' selected' : '');
+                    cell.addEventListener('click', () => selectDate(dateStr, d));
+                }
+                grid.appendChild(cell);
+            }
+        }
+
+        function selectDate(dateStr, day) {
+            selectedDate = dateStr;
+            selectedSlot = null;
+            renderCalendar();
+
+            const [y, m, d2] = dateStr.split('-');
+            const date = new Date(parseInt(y), parseInt(m)-1, parseInt(d2));
+            const dayName = ['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'][date.getDay()];
+            const monthName = NL_MONTHS[date.getMonth()].toLowerCase();
+
+            document.getElementById('slotsDate').textContent = dayName.charAt(0).toUpperCase() + dayName.slice(1) + ' ' + d2 + ' ' + monthName + ' ' + y;
+
+            renderSlots();
+            document.getElementById('bookingFormWrap').style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'none';
+        }
+
+        function renderSlots() {
+            const container = document.getElementById('slotsContainer');
+            container.innerHTML = '';
+            const grid = document.createElement('div');
+            grid.className = 'slots-grid';
+
+            TIME_SLOTS.forEach(slot => {
+                const btn = document.createElement('button');
+                btn.className = 'slot-btn' + (selectedSlot === slot ? ' selected' : '');
+                btn.textContent = slot;
+                btn.addEventListener('click', () => selectSlot(slot));
+                grid.appendChild(btn);
+            });
+            container.appendChild(grid);
+        }
+
+        function selectSlot(slot) {
+            selectedSlot = slot;
+            renderSlots();
+            document.getElementById('bookingFormWrap').style.display = 'block';
+        }
+
+        document.getElementById('calPrev').addEventListener('click', () => {
+            viewMonth--;
+            if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+            renderCalendar();
+        });
+
+        document.getElementById('calNext').addEventListener('click', () => {
+            viewMonth++;
+            if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+            renderCalendar();
+        });
+
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('bookingFormWrap').style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'block';
+        });
+
+        initCalendar();
+    </script>
+</body>
+</html>
